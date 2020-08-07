@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Roboto Slab', serif;
+    background-color: #264653;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  h1 {
+    background-color: #e76f51;
+    max-width: 700px;
+    color: white;
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  h5 {
+    margin-top: 10px;
+    padding-top: 10px;
+    color: white;
+    text-align: center;
+  }
+
+  h6 {
+    font-size: 18px;
+    line-height: 30px;
+    margin-top: 25px;
+    padding-top: 10px;
+    color: white;
+    text-align: center;
+  }
+
+  button {
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .loginDiv {
+    margin: 0 auto;
+    align-self: center;
+    text-align: center;
+    align-content: center;
+  }
+
+  .cargando {
+    margin: 0 auto;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 80px;
+    color: black;
+  }
+
+  .loginButton {
+    margin: 0 auto;
+    font-size: 25px;
+    align-self: center;
+    position: center;
+    margin-top: 40px;
+   height: 70px;
+   width: 300px;
+   background-color: #2a9d8f;
+   border: none;
+    color: white;
+    border-radius: 20px;
+  }
+  .carousel {
+    height: 90%;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 15px;
+  }
+
+  .carousel-cell {
+    margin-right: 15px;
+    border-radius: 10px;
+    counter-increment: carousel-cell;
+  }
+
+  .primerRectangulo {
+    background-color: #2a9d8f;
+    max-width: 65%;
+    margin: 0 auto;
+    height: 230px;
+    border-radius: 15px;
+  }
+
+  .segundoRectangulo {
+    background-color: #ee9b57;
+    max-width: 65%;
+    margin: 0 auto;
+    height: 230px;
+    border-radius: 15px;
+  }
+
+  img {
+    max-height: 170px;
+    margin-top: 30px;
+    border-radius: 15px;
+  }
+
+  input {
+    color: white;
+  }
+
+  .empty {
+    height: 30px;
+  }
+
+  /* The alert message box */
+  .error {
+    max-width: 600px;
+    height: 90px;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 20px;
+    background-color: #f44336;
+    /* Red */
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  .notError {
+    max-width: 600px;
+    height: 90px;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 18px;
+    padding: 20px;
+    background-color: #169e53;
+    /* Red */
+    color: white;
+    margin-bottom: 15px;
+  }
+
+  /* The close button */
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  /* When moving the mouse over the close button */
+  .closebtn:hover {
+    color: black;
+  }
