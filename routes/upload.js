@@ -34,6 +34,10 @@ router.use(express.json());
 
 let tempUpload = multer({ storage: multer.memoryStorage() });
 
+router.get('/', (req, res) => {
+    res.redirect('https://prettykittytwitty.herokuapp.com/');
+});
+
 router.post("/", (req,res, next) => {console.log(req.user); next();}, tempUpload.single("myImage"), verifyImage, verifyCat, upload,
   (req, res) => {
     //Primero revisa si el usuario ya creó fotos y cambia esa propiedad.
