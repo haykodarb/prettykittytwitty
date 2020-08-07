@@ -22,6 +22,7 @@
     }).then((res) => {
       return res.json();
     }).then((json) => {
+      primerCargando.style.display = 'none';
       console.log(json);
       json.data.forEach(((file) => {
         let sliderCellDiv = document.createElement('div');
@@ -37,7 +38,6 @@
         cellAlign: 'left',
         contain: true
       });
-      primerCargando.style.display = 'none';
     });
   }
 
@@ -55,6 +55,7 @@
     }).then((res) => {
       return res.json();
     }).then((json) => {
+      segundoCargando.style.display = 'none';
       console.log(json);
       json.data.forEach(((file) => {
         let sliderCellDiv = document.createElement('div');
@@ -70,6 +71,5 @@
         cellAlign: 'left',
         contain: true
       });
-      segundoCargando.style.display = 'none';
     });
   }
