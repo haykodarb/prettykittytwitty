@@ -14,7 +14,8 @@ const grid = require("gridfs-stream");
 const mongoose = require("mongoose");
 const upload = require("./routes/upload");
 const images = require('./routes/images');
-const cronjob = require('./routes/cron');
+const uploadJob = require('./routes/cron').uploadJob;
+const pingJob = require('./routes/cron').pingJob;
 
 let port = process.env.PORT || 3000;
 
@@ -143,6 +144,11 @@ app.get(
   }
 );
 
-cronjob.start();
+app.get('/ping', (req, res) => {
+  res.send('Sending ping to keep Heroku from idling');
+})
+
+uploadJob.start();
+pingJob.start();
 
 module.exports = app;

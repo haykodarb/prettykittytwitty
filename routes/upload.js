@@ -95,7 +95,7 @@ function verifyCat(req, res, next) {
       { url: "https://api.imagga.com/v2/tags", formData: formData },
       function (error, response, body) {
         let tags = JSON.parse(body).result.tags;
-        let cat = false;
+        let isCat = false;
         tags.forEach((result) => {
           if (
             result.confidence > 60 &&
@@ -103,10 +103,10 @@ function verifyCat(req, res, next) {
               result.tag.en === "cat" ||
               result.tag.en === "kitty")
           ) {
-            cat = true;
+            isCat = true;
           }
         });
-        if (!cat) {
+        if (!isCat) {
           res.render('index', {
             username: req.user.username,
             message: "La página se llama Pretty Kitty Twitty, no Pretty Lo Que Se Te Cante El Culo Twitty. Por favor subí fotos de gatitos o andate.",
