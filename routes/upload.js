@@ -117,7 +117,7 @@ function verifyCat(req, res, next) {
           next();
         }
       } else {
-        console.log(JSON.parse(body).status.text)ñ
+        console.log(JSON.parse(body).status.text);
         res.render('index', {
         username: req.user.username,
         message: 'aaAaAA perdón, hubo un error al leer la imagen',
