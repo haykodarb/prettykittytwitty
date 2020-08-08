@@ -24,7 +24,7 @@ const UserSchema = mongoose.Schema({
 
 const User = con.model("User", UserSchema, "users");
 
-let pingJob = new CronJob ('0 15 * * * *', () => {
+let pingJob = new CronJob ('0 */15 * * * *', () => {
   request.get('https://prettykittytwitty.herokuapp.com/ping', {}, (error, response, body) => {
     console.log(body);
     return;
