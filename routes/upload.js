@@ -94,6 +94,7 @@ function verifyCat(req, res, next) {
     .post(
       { url: "https://api.imagga.com/v2/tags", formData: formData },
       function (error, response, body) {
+        if(typeof JSON.parse(body).result != 'undefined') {
         let tags = JSON.parse(body).result.tags;
         let isCat = false;
         tags.forEach((result) => {
@@ -115,6 +116,13 @@ function verifyCat(req, res, next) {
         } else {
           next();
         }
+      } else {
+        console.log(JSON.parse(body).status.text)ñ
+        res.render('index', {
+        username: req.user.username,
+        message: 'aaAaAA perdón, hubo un error al leer la imagen',
+        error: true,
+      })}
       }
     )
     .auth(process.env.apiKey, process.env.apiSecret, true);
