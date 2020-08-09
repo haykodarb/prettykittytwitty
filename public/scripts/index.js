@@ -24,11 +24,11 @@ function fetchSubidas() {
     })
     .then((json) => {
       if (json.data) {
-        segundoCargando.style.display = "none";
+        primerCargando.style.display = "none";
         json.data.forEach((file) => {
           let sliderCellDiv = document.createElement("div");
           sliderCellDiv.classList.add("carousel-cell");
-          segundoSlider.appendChild(sliderCellDiv);
+          primerSlider.appendChild(sliderCellDiv);
           let sliderCellImg = document.createElement("img");
           sliderCellImg.setAttribute(
             "src",
@@ -36,16 +36,15 @@ function fetchSubidas() {
           );
           sliderCellDiv.appendChild(sliderCellImg);
         });
-      } else if(json.error) {
-        segundoCargando.innerHTML = json.error;
+        let elem = document.getElementById("primerSlider");
+        primerSlider = new Flickity(elem, {
+          cellAlign: "left",
+          contain: true,
+        });
+      } else if (json.error) {
+        primerCargando.innerHTML = json.error;
+        return;
       }
-    })
-    .then(() => {
-      let elem = document.getElementById("primerSlider");
-      let primerSlider = new Flickity(elem, {
-        cellAlign: "left",
-        contain: true,
-      });
     });
 }
 
@@ -78,15 +77,14 @@ function fetchNoSubidas() {
           );
           sliderCellDiv.appendChild(sliderCellImg);
         });
-      } else if(json.error) {
+        let elem = document.getElementById("segundoSlider");
+        segundoSlider = new Flickity(elem, {
+          cellAlign: "left",
+          contain: true,
+        });
+      } else if (json.error) {
         segundoCargando.innerHTML = json.error;
+        return;
       }
-    })
-    .then(() => {
-      let elem = document.getElementById("segundoSlider");
-      let segundoSlider = new Flickity(elem, {
-        cellAlign: "left",
-        contain: true,
-      });
     });
 }
