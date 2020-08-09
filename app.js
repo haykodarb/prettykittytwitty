@@ -120,8 +120,6 @@ app.get("/", (req, res) => {
   if (typeof req.user === "object") {
     let message = req.cookies.message;
     let error = req.cookies.error;
-    res.clearCookie('message');
-    res.clearCookie('error');
     res.render("index", {
       username: req.user.username,
       message: message,
