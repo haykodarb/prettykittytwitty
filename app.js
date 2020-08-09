@@ -101,7 +101,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(__dirname + "/public"));
 
-var store = new BetterMemoryStore({ expires: 60 * 60 * 1000, debug: true });
+let store = new BetterMemoryStore({ expires: 60 * 60 * 1000, debug: true });
+
 app.use(
   session({
     name: "session",
