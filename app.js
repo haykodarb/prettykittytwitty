@@ -119,13 +119,13 @@ app.use("/images", images);
 app.get("/", (req, res) => {
   if (typeof req.user === "object") {
     let message = req.cookies.message;
-    let error = req.cookies.error;
+    let isError = req.cookies.isError;
     res.clearCookie('message');
-    res.clearCookie('error');
+    res.clearCookie('isError');
     res.render("index", {
       username: req.user.username,
       message: message,
-      error: error,
+      isError: isError,
     });
   } else {
     res.redirect("/login");
@@ -146,7 +146,7 @@ app.get(
   }),
   (req, res) => {
     res.cookie("message", "Yeyy ya iniciaste sesión y podes subir todos los gatitos que quieras (◠‿◠✿)");
-    res.cookie("error", false);
+    res.cookie("isError", 'false');
     res.redirect("/");
   }
 );

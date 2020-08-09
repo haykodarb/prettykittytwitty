@@ -66,7 +66,7 @@ router.post(
           );
         }
         res.cookie("message", "uwu gracias por subir un lindo gatito (✿ ♡‿♡)");
-        res.cookie("error", false);
+        res.cookie("isError", 'false');
         res.redirect("../");
       });
   }
@@ -84,7 +84,7 @@ function verifyImage(req, res, next) {
         "message",
         "._. eeemmmm parece que tu gatito es demasiado gordo jiji, por favor subí uno que pese menos de 2mb :-)"
       );
-      res.cookie("error", true);
+      res.cookie("isError", 'true');
       res.redirect("../");
     } else {
       next();
@@ -94,7 +94,7 @@ function verifyImage(req, res, next) {
       "message",
       "OwO tuvimos un problemita >.< tu gatito tiene que venir en formato jpg, jpeg o png, perdon (；ω；) "
     );
-    res.cookie("error", true);
+    res.cookie("isError", 'true');
     res.redirect("../");
   }
 }
@@ -126,7 +126,7 @@ function verifyCat(req, res, next) {
               "message",
               "La página se llama Pretty Kitty Twitty, no Pretty Lo Que Se Te Cante El Culo Twitty. Por favor subí fotos de gatitos o andate."
             );
-            res.cookie("error", true);
+            res.cookie("isError", 'true');
             res.redirect("../");
           } else {
             next();
@@ -136,7 +136,7 @@ function verifyCat(req, res, next) {
             "message",
             "aaAaAA perdónnnNN, hubo un error al revisar la imagen, revisá que sea un archivo válido."
           );
-          res.cookie("error", true);
+          res.cookie("isError", 'true');
           res.redirect("../");
         }
       }

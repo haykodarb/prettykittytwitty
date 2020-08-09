@@ -31,7 +31,7 @@
 
   </div>
   <% if(typeof message === 'string') { %>
-    <% if(error) { %>
+    <% if(isError === 'true') { %>
   <div class="error">
       <%= message %>
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
