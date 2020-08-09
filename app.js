@@ -13,9 +13,9 @@ const BetterMemoryStore = require("session-memory-store")(session);
 const grid = require("gridfs-stream");
 const mongoose = require("mongoose");
 const upload = require("./routes/upload");
-const images = require('./routes/images');
-const uploadJob = require('./routes/cron').uploadJob;
-const pingJob = require('./routes/cron').pingJob;
+const images = require("./routes/images");
+const uploadJob = require("./routes/cron").uploadJob;
+const pingJob = require("./routes/cron").pingJob;
 
 let port = process.env.PORT || 3000;
 
@@ -23,7 +23,6 @@ let port = process.env.PORT || 3000;
 http.listen(port, () => {
   console.log(chalk.green(`Listening on port: ${port}`));
 });
-
 
 let con = mongoose.createConnection(process.env.mongoURI, {
   useNewUrlParser: true,
@@ -100,7 +99,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + "/public"));
 
 var store = new BetterMemoryStore({ expires: 60 * 60 * 1000, debug: true });
 app.use(
@@ -118,17 +117,23 @@ app.use("/upload", upload);
 app.use("/images", images);
 
 app.get("/", (req, res) => {
-  if(typeof req.user === 'object'){
-  res.render("index", {
-    username: req.user.username,
-    message: 'Yeeeeyyy iniciaste sesión con Twitter, ya podes subir todas las fotos de gatitos que quieras （＾ｖ＾）',
-    error: false,
-  }); }
-  else {res.redirect('/login');}
+  if (typeof req.user === "object") {
+    let message = req.cookies.message;
+    let error = req.cookies.error;
+    res.clearCookie('message');
+    res.clearCookie('error');
+    res.render("index", {
+      username: req.user.username,
+      message: message,
+      error: error,
+    });
+  } else {
+    res.redirect("/login");
+  }
 });
 
-app.get('/login', (req,res) => {
-  res.render('login');
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
 /** Add twitter login and return methoods */
@@ -144,9 +149,9 @@ app.get(
   }
 );
 
-app.get('/ping', (req, res) => {
-  res.send('Sending ping to keep Heroku from idling');
-})
+app.get("/ping", (req, res) => {
+  res.send("Sending ping to keep Heroku from idling");
+});
 
 uploadJob.start();
 pingJob.start();
