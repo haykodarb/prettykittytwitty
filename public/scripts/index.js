@@ -41,7 +41,7 @@ function fetchSubidas() {
           cellAlign: "left",
           contain: true,
         });
-      } else if (json.error) {
+      } else {
         primerCargando.textContent = json.error;
       }
     });
@@ -81,7 +81,7 @@ function fetchNoSubidas() {
           cellAlign: "left",
           contain: true,
         });
-      } else if (json.error) {
+      } else {
         segundoCargando.textContent = json.error;
       }
     });
