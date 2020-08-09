@@ -64,7 +64,7 @@ function fetchNoSubidas() {
       return res.json();
     })
     .then((json) => {
-      if (typeof json.data != undefined) {
+      if (typeof json.data === 'object') {
         segundoCargando.style.display = "none";
         json.data.forEach((file) => {
           let sliderCellDiv = document.createElement("div");
@@ -82,7 +82,7 @@ function fetchNoSubidas() {
           cellAlign: "left",
           contain: true,
         });
-      } else if (typeof json.error != undefined) {
+      } else if (typeof json.error === 'string') {
         segundoCargando.innerHTML = json.error;
         return;
       }
