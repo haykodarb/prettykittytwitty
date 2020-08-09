@@ -118,9 +118,10 @@ app.use("/images", images);
 
 app.get("/", (req, res) => {
   if (typeof req.user === "object") {
-    console.log(req.cookies);
     let message = req.cookies.message;
     let error = req.cookies.error;
+    res.clearCookie('message');
+    res.clearCookie('error');
     res.render("index", {
       username: req.user.username,
       message: message,
@@ -144,6 +145,8 @@ app.get(
     failureRedirect: "/home",
   }),
   (req, res) => {
+    res.cookie("message", "Yeyy ya iniciaste sesión y podes subir todos los gatitos que quieras (◠‿◠✿)");
+    res.cookie("error", false);
     res.redirect("/");
   }
 );
