@@ -118,6 +118,7 @@ app.use("/images", images);
 
 app.get("/", (req, res) => {
   if (typeof req.user === "object") {
+    console.log(req.cookies);
     let message = req.cookies.message;
     let error = req.cookies.error;
     res.render("index", {
