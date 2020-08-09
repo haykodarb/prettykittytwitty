@@ -56,10 +56,14 @@ router.post("/nosubidas", (req, res) => {
             });
           });
         } else {
-          res.status(400).send("No hay imagenes");
+          res.status(204).json({
+            error: "No hay imágenes para mostrar",
+          });
         }
       } else {
-        res.status(400).send("No hay imagenes");
+        res.status(204).json({
+          error: "No hay imágenes para mostrar",
+        });
       }
     });
 });
