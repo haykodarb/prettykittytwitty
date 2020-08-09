@@ -42,7 +42,7 @@ function fetchSubidas() {
           contain: true,
         });
       } else if (json.error) {
-        primerCargando.innerHTML = json.error;
+        primerCargando.textContent = json.error;
       }
     });
 }
@@ -82,7 +82,7 @@ function fetchNoSubidas() {
           contain: true,
         });
       } else if (json.error) {
-        segundoCargando.innerHTML = json.error;
+        segundoCargando.textContent = json.error;
       }
     });
 }
