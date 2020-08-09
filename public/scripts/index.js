@@ -20,9 +20,9 @@
         'Content-Type': 'application/json',
       },
     }).then((res) => {
-      primerCargando.style.display = 'none';
       return res.json();
     }).then((json) => {
+      primerCargando.style.display = 'none';
       console.log(json);
       json.data.forEach(((file) => {
         let sliderCellDiv = document.createElement('div');
@@ -53,9 +53,9 @@
         'Content-Type': 'application/json',
       },
     }).then((res) => {
-      segundoCargando.style.display = 'none';
       return res.json();
     }).then((json) => {
+      segundoCargando.style.display = 'none';
       console.log(json);
       json.data.forEach(((file) => {
         let sliderCellDiv = document.createElement('div');
