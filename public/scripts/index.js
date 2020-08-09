@@ -43,7 +43,6 @@ function fetchSubidas() {
         });
       } else if (json.error) {
         primerCargando.innerHTML = json.error;
-        return;
       }
     });
 }
@@ -64,7 +63,7 @@ function fetchNoSubidas() {
       return res.json();
     })
     .then((json) => {
-      if (typeof json.data === 'object') {
+      if (json.data) {
         segundoCargando.style.display = "none";
         json.data.forEach((file) => {
           let sliderCellDiv = document.createElement("div");
@@ -82,9 +81,8 @@ function fetchNoSubidas() {
           cellAlign: "left",
           contain: true,
         });
-      } else if (typeof json.error === 'string') {
+      } else if (json.error) {
         segundoCargando.innerHTML = json.error;
-        return;
       }
     });
 }
