@@ -49,7 +49,7 @@ router.post("/nosubidas", (req, res) => {
                 b64content: image,
                 fileType: file.contentType,
               });
-              if (data.length === 10) {
+              if (data.length === array.length) {
                 res.json({
                   data,
                 });
@@ -94,7 +94,7 @@ router.post("/subidas", (req, res) => {
               b64content: image,
               fileType: file.contentType,
             });
-            if (data.length === 10) {
+            if (data.length === array.length) {
               res.json({
                 data,
               });
