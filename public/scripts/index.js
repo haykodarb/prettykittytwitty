@@ -10,7 +10,7 @@ const messageBox = document.getElementById('messageBox');
 uploadForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const endpoint = "./upload";
+  const endpoint = "https://prettykittytwitty.herokuapp.com/upload";
   const formData = new FormData();
 
   formData.append("myImage", myImage.files[0]);
