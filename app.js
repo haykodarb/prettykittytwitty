@@ -117,7 +117,9 @@ app.use("/images", images);
 
 app.get("/", (req, res) => {
   if (typeof req.user === "object") {
-    res.render("index");
+    res.render("index", {
+     username: req.user.username,
+    });
   } else {
     res.redirect("/login");
   }
