@@ -4,18 +4,18 @@ let username = document.getElementById("username").dataset.username;
 const primerCargando = document.getElementById("cargando1");
 const segundoCargando = document.getElementById("cargando2");
 const uploadForm  = document.getElementById("uploadForm");
+const messageBox = document.getElementById('messageBox');
+messageBox.style.display = 'none';
 
 uploadForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const myImage = document.getElementById("myImage");
-  const messageBox = document.getElementById('messageBox');
+
   let endpoint = "https://prettykittytwitty.herokuapp.com/upload";
   let formData = new FormData();
 
   formData.append("myImage", myImage.files[0]);
-  console.log(formData);
-  console.log(myImage);
   
   fetch(endpoint, {
     method: "POST",
@@ -30,8 +30,10 @@ uploadForm.addEventListener("submit", (e) => {
       } else {
         messageBox.className = 'notError';
       }
-      messageBox.innerText = message;
-    });
+      messageBox.innerText = json.message;
+      messageBox.style.display = "initial";
+      fetchNoSubidas();
+    })
 });
 
 fetchNoSubidas();
