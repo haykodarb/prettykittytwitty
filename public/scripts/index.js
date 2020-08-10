@@ -13,7 +13,8 @@ uploadForm.addEventListener("submit", (e) => {
   let endpoint = "https://prettykittytwitty.herokuapp.com/upload";
   let formData = new FormData();
 
-  formData.append("myImage", myImage.files[0]);
+  formData.append("myImage", myImage);
+  console.log(myImage);
   
   fetch(endpoint, {
     method: "POST",
