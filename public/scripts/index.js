@@ -3,9 +3,39 @@ const segundoSlider = document.getElementById("segundoSlider");
 let username = document.getElementById("username").dataset.username;
 const primerCargando = document.getElementById("cargando1");
 const segundoCargando = document.getElementById("cargando2");
+const uploadForm = document.getElementById("uploadForm");
+const myImage = document.getElementById("myImage");
+const messageBox = document.getElementById('messageBox');
+
+uploadForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const endpoint = "./upload";
+  const formData = new FormData();
+
+  formData.append("myImage", myImage.files[0]);
+
+  fetch(endpoint, {
+    method: "post",
+    body: formData,
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((json) => {
+      if(json.isError) {
+        messageBox.className = 'error';
+      } else {
+        messageBox.className = 'notError';
+      }
+      messageBox.innerText = message;
+    });
+});
 
 fetchNoSubidas();
 fetchSubidas();
+
+function uploadPicture() {}
 
 function fetchSubidas() {
   let data = {

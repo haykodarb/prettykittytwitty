@@ -36,7 +36,6 @@ const UserSchema = mongoose.Schema({
   username: String,
   token: String,
   tokenSecret: String,
-  firstPic: Boolean,
 });
 
 const User = con.model("User", UserSchema, "users");
@@ -75,7 +74,6 @@ passport.use(
             username: profile.username,
             token: token,
             tokenSecret: tokenSecret,
-            firstPic: false,
           });
           user.save();
         }
@@ -119,15 +117,7 @@ app.use("/images", images);
 
 app.get("/", (req, res) => {
   if (typeof req.user === "object") {
-    let message = req.cookies.message;
-    let isError = req.cookies.isError;
-    res.clearCookie('message');
-    res.clearCookie('isError');
-    res.render("index", {
-      username: req.user.username,
-      message: message,
-      isError: isError,
-    });
+    res.render("index");
   } else {
     res.redirect("/login");
   }
@@ -146,8 +136,6 @@ app.get(
     failureRedirect: "/home",
   }),
   (req, res) => {
-    res.cookie("message", "Yeyy ya iniciaste sesión y podes subir todos los gatitos que quieras (◠‿◠✿)");
-    res.cookie("isError", 'false');
     res.redirect("/");
   }
 );

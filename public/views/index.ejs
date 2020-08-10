@@ -17,11 +17,11 @@
 <body>
   <h1>Pretty Kitty Twitty</h1>
   <div class="container">
-    <form action="/upload" method="POST" enctype="multipart/form-data">
+    <form action="/upload" id= "uploadForm "method="POST" enctype="multipart/form-data">
       <div class="file-field input-field">
         <div class="btn grey">
           <span>Subir imagen</span>
-          <input name="myImage" type="file">
+          <input id="myImage" type="file">
         </div>
         <div class="file-path-wrapper">
           <input class="file-path validate" type="text">
@@ -31,18 +31,9 @@
     </form>
 
   </div>
-  <% if(typeof message === 'string') { %>
-    <% if(isError === 'true') { %>
-  <div class="error">
-      <%= message %>
+  <div class="error" id="messageBox">     
     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
   </div> 
-    <% } else { %>
-        <div class="notError">
-          <%= message %>
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        </div>       
-    <% }} %>
     </div>
   <h5>Imagenes twitteadas</h5>
   <div class="primerRectangulo">

@@ -7,7 +7,7 @@ const request = require("request");
 const path = require("path");
 const streamifier = require("streamifier");
 const { read } = require("fs");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 
 let gfs;
 let con = mongoose.createConnection(process.env.mongoURI, {
@@ -20,7 +20,6 @@ const UserSchema = mongoose.Schema({
   username: String,
   token: String,
   tokenSecret: String,
-  firstPic: Boolean,
 });
 
 const User = con.model("User", UserSchema, "users");
@@ -48,27 +47,10 @@ router.post(
   upload,
   (req, res) => {
     //Primero revisa si el usuario ya creó fotos y cambia esa propiedad.
-    gfs.files
-      .find({ "metadata.username": req.user.username })
-      .toArray((err, result) => {
-        if (err) {
-          console.log(err);
-        }
-        if (result.length === 1) {
-          User.updateOne(
-            { username: req.user.username },
-            { firstPic: true },
-            (err) => {
-              if (err) {
-                console.log(err);
-              }
-            }
-          );
-        }
-        res.cookie("message", "uwu gracias por subir un lindo gatito (✿ ♡‿♡)");
-        res.cookie("isError", 'false');
-        res.redirect("../");
-      });
+    res.json({
+      message: "uwu gracias por subir un lindo gatito (✿ ♡‿♡)",
+      isError: false,
+    });
   }
 );
 
@@ -80,22 +62,20 @@ function verifyImage(req, res, next) {
     fileType === "image/png"
   ) {
     if (req.file.size > 2097152) {
-      res.cookie(
-        "message",
-        "._. eeemmmm parece que tu gatito es demasiado gordo jiji, por favor subí uno que pese menos de 2mb :-)"
-      );
-      res.cookie("isError", 'true');
-      res.redirect("../");
+      res.json({
+        message:
+          "._. eeemmmm parece que tu gatito es demasiado gordo jiji, por favor subí uno que pese menos de 2mb :-)",
+        isError: true,
+      });
     } else {
       next();
     }
   } else {
-    res.cookie(
-      "message",
-      "OwO tuvimos un problemita >.< tu gatito tiene que venir en formato jpg, jpeg o png, perdon (；ω；) "
-    );
-    res.cookie("isError", 'true');
-    res.redirect("../");
+    res.json({
+      message:
+        "OwO tuvimos un problemita >.< tu gatito tiene que venir en formato jpg, jpeg o png, perdon (；ω；)",
+      isError: true,
+    });
   }
 }
 
@@ -122,22 +102,20 @@ function verifyCat(req, res, next) {
             }
           });
           if (!isCat) {
-            res.cookie(
-              "message",
-              "La página se llama Pretty Kitty Twitty, no Pretty Lo Que Se Te Cante El Culo Twitty. Por favor subí fotos de gatitos o andate."
-            );
-            res.cookie("isError", 'true');
-            res.redirect("../");
+            res.json({
+              message:
+                "La página se llama Pretty Kitty Twitty, no Pretty Lo Que Se Te Cante El Culo Twitty. Por favor subí fotos de gatitos o andate.",
+              isError: true,
+            });
           } else {
             next();
           }
         } else {
-          res.cookie(
-            "message",
-            "aaAaAA perdónnnNN, hubo un error al revisar la imagen, revisá que sea un archivo válido."
-          );
-          res.cookie("isError", 'true');
-          res.redirect("../");
+          res.json({
+            message:
+              "aaAaAA perdónnnNN, hubo un error al revisar la imagen, revisá que sea un archivo válido.",
+            isError: true,
+          });
         }
       }
     )

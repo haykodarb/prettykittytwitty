@@ -33,7 +33,7 @@ let pingJob = new CronJob ('0 */15 * * * *', () => {
 
 let uploadJob = new CronJob("0 0 */3 * * *", () => {
   console.log('Cron job started');
-  User.find({ firstPic: true }, (err, result) => {
+  User.find((err, result) => {
     result.forEach((user) => {
       let T = new Twit({
         consumer_key: process.env.twitterKey,
@@ -103,7 +103,6 @@ let uploadJob = new CronJob("0 0 */3 * * *", () => {
                 });
               });
             });
-          } else {
           }
         });
     });
