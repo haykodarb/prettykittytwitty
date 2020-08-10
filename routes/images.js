@@ -24,6 +24,7 @@ router.post("/nosubidas", (req, res) => {
     .find({
       "metadata.username": req.body.username,
     })
+    .sort({_id : 1})
     .toArray((err, files) => {
       let newFiles = new Array();
       if (files || files.length > 0) {
@@ -74,6 +75,7 @@ router.post("/subidas", (req, res) => {
     .find({
       "metadata.username": req.body.username,
     })
+    .sort({ _id: -1 })
     .toArray((err, files) => {
       let newFiles = new Array();
       if (files || files.length > 0) {
