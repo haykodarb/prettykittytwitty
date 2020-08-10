@@ -1,5 +1,5 @@
-const primerSlider = document.getElementById("primerSlider");
-const segundoSlider = document.getElementById("segundoSlider");
+let primerSlider = document.getElementById("primerSlider");
+let segundoSlider = document.getElementById("segundoSlider");
 let username = document.getElementById("username").dataset.username;
 const primerCargando = document.getElementById("cargando1");
 const segundoCargando = document.getElementById("cargando2");
@@ -31,8 +31,7 @@ uploadForm.addEventListener("submit", (e) => {
         messageBox.className = 'notError';
       }
       messageBox.innerText = json.message;
-      messageBox.style.display = "initial";
-      fetchNoSubidas();
+      messageBox.style.display = "flex";
     })
 });
 
