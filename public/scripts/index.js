@@ -74,6 +74,7 @@ function fetchSubidas() {
           cellAlign: "left",
           contain: true,
         });
+        primerSlider.className = 'carousel';
       } else {
         primerCargando.textContent = json.error;
       }
@@ -114,6 +115,7 @@ function fetchNoSubidas() {
           cellAlign: "left",
           contain: true,
         });
+        primerSlider.className = 'carousel';
       } else {
         segundoCargando.textContent = json.error;
       }
