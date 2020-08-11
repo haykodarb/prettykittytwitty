@@ -3,9 +3,9 @@ let segundoSlider = document.getElementById("segundoSlider");
 let username = document.getElementById("username").dataset.username;
 const primerCargando = document.getElementById("cargando1");
 const segundoCargando = document.getElementById("cargando2");
-const uploadForm  = document.getElementById("uploadForm");
-const messageBox = document.getElementById('messageBox');
-messageBox.style.display = 'none';
+const uploadForm = document.getElementById("uploadForm");
+const messageBox = document.getElementById("messageBox");
+messageBox.style.display = "none";
 
 uploadForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -16,7 +16,7 @@ uploadForm.addEventListener("submit", (e) => {
   let formData = new FormData();
 
   formData.append("myImage", myImage.files[0]);
-  
+
   fetch(endpoint, {
     method: "POST",
     body: formData,
@@ -25,14 +25,14 @@ uploadForm.addEventListener("submit", (e) => {
       return res.json();
     })
     .then((json) => {
-      if(json.isError) {
-        messageBox.className = 'error';
+      if (json.isError) {
+        messageBox.className = "error";
       } else {
-        messageBox.className = 'notError';
+        messageBox.className = "notError";
       }
       messageBox.innerText = json.message;
       messageBox.style.display = "flex";
-    })
+    });
 });
 
 fetchNoSubidas();
@@ -58,6 +58,11 @@ function fetchSubidas() {
     .then((json) => {
       if (json.data) {
         primerCargando.style.display = "none";
+        let elem = document.getElementById("primerSlider");
+        primerSlider = new Flickity(elem, {
+          cellAlign: "left",
+          contain: true,
+        });
         json.data.forEach((file) => {
           let sliderCellDiv = document.createElement("div");
           sliderCellDiv.classList.add("carousel-cell");
@@ -69,12 +74,6 @@ function fetchSubidas() {
           );
           sliderCellDiv.appendChild(sliderCellImg);
         });
-        let elem = document.getElementById("primerSlider");
-        primerSlider = new Flickity(elem, {
-          cellAlign: "left",
-          contain: true,
-        });
-        primerSlider.className = 'carousel';
       } else {
         primerCargando.textContent = json.error;
       }
@@ -99,6 +98,11 @@ function fetchNoSubidas() {
     .then((json) => {
       if (json.data) {
         segundoCargando.style.display = "none";
+        let elem = document.getElementById("segundoSlider");
+        segundoSlider = new Flickity(elem, {
+          cellAlign: "left",
+          contain: true,
+        });
         json.data.forEach((file) => {
           let sliderCellDiv = document.createElement("div");
           sliderCellDiv.classList.add("carousel-cell");
@@ -110,12 +114,6 @@ function fetchNoSubidas() {
           );
           sliderCellDiv.appendChild(sliderCellImg);
         });
-        let elem = document.getElementById("segundoSlider");
-        segundoSlider = new Flickity(elem, {
-          cellAlign: "left",
-          contain: true,
-        });
-        primerSlider.className = 'carousel';
       } else {
         segundoCargando.textContent = json.error;
       }
