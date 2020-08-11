@@ -73,6 +73,7 @@ function fetchSubidas() {
         primerSlider = new Flickity(elem, {
           cellAlign: "left",
           contain: true,
+          imagesLoaded: true,
         });
       } else {
         primerCargando.textContent = json.error;
@@ -113,6 +114,7 @@ function fetchNoSubidas() {
         segundoSlider = new Flickity(elem, {
           cellAlign: "left",
           contain: true,
+          imagesLoaded: true,
         });
       } else {
         segundoCargando.textContent = json.error;
