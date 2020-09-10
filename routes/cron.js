@@ -2,7 +2,7 @@ const Twit = require("twit");
 let CronJob = require("cron").CronJob;
 const grid = require("gridfs-stream");
 const mongoose = require("mongoose");
-const request = require('request');
+const request = require("request");
 
 const con = mongoose.createConnection(process.env.mongoURI, {
   useNewUrlParser: true,
@@ -24,15 +24,8 @@ const UserSchema = mongoose.Schema({
 
 const User = con.model("User", UserSchema, "users");
 
-let pingJob = new CronJob ('0 */15 * * * *', () => {
-  request.get('https://prettykittytwitty.herokuapp.com/ping', {}, (error, response, body) => {
-    console.log(body);
-    return;
-  })
-});
-
 let uploadJob = new CronJob("0 0 */3 * * *", () => {
-  console.log('Cron job started');
+  console.log("Cron job started");
   User.find((err, result) => {
     result.forEach((user) => {
       let T = new Twit({
