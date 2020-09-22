@@ -103,4 +103,3 @@ let uploadJob = new CronJob("0 0 */3 * * *", () => {
 });
 
 module.exports.uploadJob = uploadJob;
-module.exports.pingJob = pingJob;
