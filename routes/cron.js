@@ -102,4 +102,17 @@ let uploadJob = new CronJob("0 0 */3 * * *", () => {
   });
 });
 
+let pingJob = new CronJob("0 */15 * * * *", () => {
+  request.get(
+    "https://prettykittytwitty.herokuapp.com/ping",
+    {},
+    (error, response, body) => {
+      console.log(body);
+      return;
+    }
+  );
+});
+
 module.exports.uploadJob = uploadJob;
+
+module.exports.pingJob = pingJob;
