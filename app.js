@@ -15,7 +15,6 @@ const mongoose = require("mongoose");
 const upload = require("./routes/upload");
 const images = require("./routes/images");
 const uploadJob = require("./routes/cron").uploadJob;
-const pingJob = require("./routes/cron").pingJob;
 
 let port = process.env.PORT || 3000;
 
@@ -118,7 +117,7 @@ app.use("/images", images);
 app.get("/", (req, res) => {
   if (typeof req.user === "object") {
     res.render("index", {
-     username: req.user.username,
+      username: req.user.username,
     });
   } else {
     res.redirect("/login");
@@ -142,11 +141,6 @@ app.get(
   }
 );
 
-app.get("/ping", (req, res) => {
-  res.send("Sending ping to keep Heroku from idling");
-});
-
 uploadJob.start();
-pingJob.start();
 
 module.exports = app;
