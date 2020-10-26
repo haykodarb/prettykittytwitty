@@ -35,10 +35,6 @@ router.use(cookieParser());
 
 let tempUpload = multer({ storage: multer.memoryStorage() });
 
-router.get("/", (req, res) => {
-  res.redirect("https://prettykittytwitty.herokuapp.com/");
-});
-
 router.post(
   "/",
   tempUpload.single("myImage"),

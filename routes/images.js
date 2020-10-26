@@ -1,8 +1,6 @@
 const grid = require("gridfs-stream");
 const express = require("express");
 const mongoose = require("mongoose");
-const mongoURI =
-  "mongodb+srv://prettykittytwitty:cGJAs1QJkNfpChL8@prettykittytwitty.cxgd7.gcp.mongodb.net/prettykittytwitty?retryWrites=true&w=majority";
 
 let gfs;
 let con = mongoose.createConnection(process.env.mongoURI, {
@@ -24,7 +22,7 @@ router.post("/nosubidas", (req, res) => {
     .find({
       "metadata.username": req.body.username,
     })
-    .sort({_id : 1})
+    .sort({ _id: 1 })
     .toArray((err, files) => {
       let newFiles = new Array();
       if (files || files.length > 0) {
