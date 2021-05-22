@@ -147,5 +147,6 @@ app.get("/ping", (req, res) => {
 });
 
 uploadJob.start();
+pingJob.start();
 
 module.exports = app;
