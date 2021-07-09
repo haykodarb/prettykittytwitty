@@ -1,11 +1,9 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
-const ejs = require("ejs");
-const chalk = require("chalk");
 const http = require("http").createServer(app);
 const path = require("path");
 const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
 const passport = require("passport");
 const TwitterStrategy = require("passport-twitter").Strategy;
 const session = require("express-session");
@@ -14,17 +12,16 @@ const grid = require("gridfs-stream");
 const mongoose = require("mongoose");
 const upload = require("./routes/upload");
 const images = require("./routes/images");
-const uploadJob = require("./routes/cron").uploadJob;
-const pingJob = require("./routes/cron").pingJob;
+const cronJobs = require("./routes/cron");
 
-let port = process.env.PORT || 3000;
+let port = process.env.SERVER_PORT;
 
 //Server config
 http.listen(port, () => {
-  console.log(chalk.green(`Listening on port: ${port}`));
+  console.log(`Listening on port: ${port}`);
 });
 
-let con = mongoose.createConnection(process.env.mongoURI, {
+let con = mongoose.createConnection(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -48,9 +45,9 @@ con.once("open", () => {
 passport.use(
   new TwitterStrategy(
     {
-      consumerKey: process.env.twitterKey,
-      consumerSecret: process.env.twitterSecret,
-      callbackURL: process.env.callbackURL,
+      consumerKey: process.env.TWITTER_KEY,
+      consumerSecret: process.env.TWITTER_SECRET,
+      callbackURL: process.env.TWITTER_CALLBACK_URL,
     },
     function (token, tokenSecret, profile, callback) {
       User.findOne({ username: profile.username }, (err, result) => {
@@ -104,7 +101,7 @@ let store = new BetterMemoryStore({ expires: 60 * 60 * 1000, debug: true });
 app.use(
   session({
     name: "session",
-    secret: process.env.sesSecret,
+    secret: process.env.SESSION_SECRET,
     store: store,
     resave: false,
     saveUninitialized: true,
@@ -142,11 +139,6 @@ app.get(
   }
 );
 
-app.get("/ping", (req, res) => {
-  res.send("Sending ping to keep Heroku from idling");
-});
-
-uploadJob.start();
-pingJob.start();
+cronJobs.uploadJob.start();
 
 module.exports = app;

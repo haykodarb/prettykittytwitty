@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 const grid = require("gridfs-stream");
 const express = require("express");
 const mongoose = require("mongoose");
 
 let gfs;
-let con = mongoose.createConnection(process.env.mongoURI, {
+let con = mongoose.createConnection(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

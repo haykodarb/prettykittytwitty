@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const multer = require("multer");
 const grid = require("gridfs-stream");
@@ -10,7 +11,7 @@ const { read } = require("fs");
 const cookieParser = require("cookie-parser");
 
 let gfs;
-let con = mongoose.createConnection(process.env.mongoURI, {
+let con = mongoose.createConnection(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -115,7 +116,7 @@ function verifyCat(req, res, next) {
         }
       }
     )
-    .auth(process.env.apiKey, process.env.apiSecret, true);
+    .auth(process.env.API_KEY, process.env.API_SECRET, true);
 }
 
 function upload(req, res, next) {

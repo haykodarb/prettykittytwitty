@@ -1,10 +1,12 @@
+require('dotenv').config();
+
 const Twit = require("twit");
 let CronJob = require("cron").CronJob;
 const grid = require("gridfs-stream");
 const mongoose = require("mongoose");
 const request = require("request");
 
-const con = mongoose.createConnection(process.env.mongoURI, {
+const con = mongoose.createConnection(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -29,8 +31,8 @@ let uploadJob = new CronJob("0 0 */3 * * *", () => {
   User.find((err, result) => {
     result.forEach((user) => {
       let T = new Twit({
-        consumer_key: process.env.twitterKey,
-        consumer_secret: process.env.twitterSecret,
+        consumer_key: process.env.TWITTER_KEY,
+        consumer_secret: process.env.TWITTER_SECRET,
         access_token: user.token,
         access_token_secret: user.tokenSecret,
         timeout_ms: 60 * 1000,
@@ -102,17 +104,6 @@ let uploadJob = new CronJob("0 0 */3 * * *", () => {
   });
 });
 
-let pingJob = new CronJob("0 */15 * * * *", () => {
-  request.get(
-    "https://prettykittytwitty.herokuapp.com/ping",
-    {},
-    (error, response, body) => {
-      console.log(body);
-      return;
-    }
-  );
-});
 
 module.exports.uploadJob = uploadJob;
 
-module.exports.pingJob = pingJob;
