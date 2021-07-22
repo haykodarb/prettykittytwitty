@@ -17,6 +17,7 @@ const { encrypt } = require("./utils/crypto");
 const crypto = require("crypto");
 
 let port = process.env.SERVER_PORT;
+let webServer = process.env.WEB_SERVER;
 
 //Server config
 http.listen(port, () => {
@@ -59,7 +60,6 @@ passport.use(
 					if (err) {
 						console.log(err);
 					}
-					console.log("Passport runs");
 					let encryptedToken = encrypt(token);
 					let encryptedSecret = encrypt(tokenSecret);
 					let backendToken = crypto.randomBytes(10).toString("hex");
@@ -75,8 +75,6 @@ passport.use(
 								if (err) {
 									console.log(err);
 								} else {
-									console.log("Corre update");
-									console.log(backendToken);
 								}
 							}
 						);
@@ -140,7 +138,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-	res.redirect("http://localhost:8000/login");
+	res.redirect(`${webServer}/login`);
 });
 
 app.get("/twitter", passport.authenticate("twitter"));
@@ -148,14 +146,13 @@ app.get("/twitter", passport.authenticate("twitter"));
 app.get(
 	"/callback",
 	passport.authenticate("twitter", {
-		failureRedirect: "http://localhost:8000/login",
+		failureRedirect: `${webServer}/login`,
 	}),
 	async (req, res) => {
 		await User.findOne({ username: req.user.username }, (err, result) => {
 			if (result) {
-				console.log(result.backendToken);
 				res.redirect(
-					`http://localhost:8000/dashboard?username=${req.user.username}&token=${result.backendToken}`
+					`${webServer}/dashboard?username=${req.user.username}&token=${result.backendToken}`
 				);
 			}
 		});
@@ -163,6 +160,6 @@ app.get(
 );
 
 // hasta arreglar encrypt/decrypt
-// cronJob.start();
+cronJob.start();
 
 module.exports = app;

@@ -34,17 +34,12 @@ function verifyUser(req, res, next) {
 
 	User.findOne({ username: req.query.username }, (err, result) => {
 		if (result) {
-			console.log(result);
 			if (result.backendToken == req.query.token) {
-				console.log("token CORRECTO");
 				next();
 			} else {
-				console.log("token inc");
 				res.status(400).send("Token incorrecto");
 			}
 		} else {
-			console.log("token inc");
-
 			res.status(400).send("Token incorrecto");
 		}
 	});

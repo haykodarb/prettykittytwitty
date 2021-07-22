@@ -8,6 +8,7 @@ const request = require("request");
 const path = require("path");
 const streamifier = require("streamifier");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 let gfs;
 let con = mongoose.createConnection(process.env.MONGO_URL, {
@@ -20,6 +21,7 @@ const UserSchema = mongoose.Schema({
 	username: String,
 	token: String,
 	tokenSecret: String,
+	backendToken: String,
 });
 
 const User = con.model("User", UserSchema, "users");
@@ -30,6 +32,7 @@ con.once("open", () => {
 });
 
 const router = express.Router();
+router.use(cors());
 router.use(express.json());
 router.use(cookieParser());
 
@@ -37,7 +40,7 @@ let tempUpload = multer({ storage: multer.memoryStorage() });
 
 router.post(
 	"/",
-	tempUpload.single("myImage"),
+	tempUpload.single("file"),
 	verifyUser,
 	verifyImage,
 	verifyCat,
@@ -54,10 +57,13 @@ router.post(
 function verifyUser(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 
-	User.findOne({ username: req.query.username }, (err, result) => {
+	console.log(req.body);
+	console.log(req.file);
+
+	User.findOne({ username: req.body.username }, (err, result) => {
 		if (result) {
 			console.log(result);
-			if (result.backendToken == req.query.token) {
+			if (result.backendToken == req.body.token) {
 				next();
 			} else {
 				res.status(400).send("Token incorrecto");
@@ -147,7 +153,7 @@ function upload(req, res, next) {
 			root: "uploads",
 			content_type: req.file.mimetype,
 			metadata: {
-				username: req.user.username,
+				username: req.body.username,
 				inTwitter: false,
 				originalName: req.file.originalname,
 			},

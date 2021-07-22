@@ -26,8 +26,7 @@ const UserSchema = mongoose.Schema({
 
 const User = con.model("User", UserSchema, "users");
 
-let uploadJob = new CronJob("*/15 * * * * *", () => {
-	console.log("Cron job started");
+let uploadJob = new CronJob("* * */3 * * *", () => {
 	User.find((err, result) => {
 		result.forEach((user) => {
 			let decryptedToken = decrypt(user.token);
