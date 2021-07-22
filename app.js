@@ -133,20 +133,6 @@ app.use(passport.session());
 app.use("/api/upload", upload);
 app.use("/api/images", images);
 
-app.get("/", (req, res) => {
-	if (typeof req.user === "object") {
-		res.render("index", {
-			username: req.user.username,
-		});
-	} else {
-		res.redirect("/login");
-	}
-});
-
-app.get("/login", (req, res) => {
-	res.redirect(`${webServer}/login`);
-});
-
 app.get("/twitter", passport.authenticate("twitter"));
 
 app.get(

@@ -15268,7 +15268,7 @@ this.d=b
 this.a=c},
 Nx:function(a){var s=0,r=P.V(t.N),q,p,o,n,m,l,k,j,i,h
 var $async$Nx=P.P(function(b,c){if(b===1)return P.S(c,r)
-while(true)switch(s){case 0:P.iF("http://50.116.38.56:3200/api/upload",0,null)
+while(true)switch(s){case 0:P.iF("http://prettykittytwitty.xyz/api/upload",0,null)
 s=3
 return P.N(V.Km(),$async$Nx)
 case 3:p=c.a
@@ -15292,7 +15292,7 @@ i.Gf$=new B.a1v(H.f([],t.Aa))
 h=B.aDZ()
 h.a="POST"
 s=5
-return P.N(i.ym(0,"http://50.116.38.56:3200/api/upload",null,j,null,null,h,null,t.f),$async$Nx)
+return P.N(i.ym(0,"http://prettykittytwitty.xyz/api/upload",null,j,null,null,h,null,t.f),$async$Nx)
 case 5:p=c.a
 p.toString
 q=J.aR(p,"message")
@@ -17177,7 +17177,7 @@ o=J.aj(p)
 n=H.kr(o.i(p,"username"))
 m=H.kr(o.i(p,"token"))
 s=4
-return P.N(G.aJr(P.iF("http://50.116.38.56:3200/api/images"+("?username="+H.h(n)+"&uploaded="+a+"&token="+H.h(m)),0,null)),$async$a0d)
+return P.N(G.aJr(P.iF("http://prettykittytwitty.xyz:3200/api/images"+("?username="+H.h(n)+"&uploaded="+a+"&token="+H.h(m)),0,null)),$async$a0d)
 case 4:l=c
 k=C.ae.FJ(0,B.aJk(J.aR(U.aHc(l.e).c.a,"charset")).ck(0,l.x),null)
 j=H.f([],t.p)
@@ -54984,14 +54984,14 @@ return B.aow(L.oH("Log in to Twitter",s,s,A.k6(s,s,C.v,s,s,s,s,s,s,s,s,30,s,s,s,
 nD:function(){var s=0,r=P.V(t.H)
 var $async$nD=P.P(function(a,b){if(a===1)return P.S(b,r)
 while(true)switch(s){case 0:s=5
-return P.N(T.am6("http://50.116.38.56:3200/login"),$async$nD)
+return P.N(T.am6("http://prettykittytwitty.xyz/twitter"),$async$nD)
 case 5:s=b?2:4
 break
 case 2:s=6
-return P.N(T.amI("http://50.116.38.56:3200/login"),$async$nD)
+return P.N(T.amI("http://prettykittytwitty.xyz/twitter"),$async$nD)
 case 6:s=3
 break
-case 4:H.i("Could not launch http://50.116.38.56:3200/login")
+case 4:H.i("Could not launch http://prettykittytwitty.xyz/twitter")
 case 3:return P.T(null,r)}})
 return P.U($async$nD,r)}}
 D.a8B.prototype={
