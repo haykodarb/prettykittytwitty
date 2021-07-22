@@ -48,7 +48,7 @@ router.post(
 	(req, res) => {
 		//Primero revisa si el usuario ya creó fotos y cambia esa propiedad.
 		res.json({
-			message: "uwu gracias por subir un lindo gatito (✿ ♡‿♡)",
+			message: "uwu thanks for uploading a pretty kitty :-)",
 			isError: false,
 		});
 	}
@@ -81,10 +81,10 @@ function verifyImage(req, res, next) {
 		fileType === "image/jpeg" ||
 		fileType === "image/png"
 	) {
-		if (req.file.size > 2097152) {
+		if (req.file.size > (2097152 * 4)) {
 			res.json({
 				message:
-					"._. eeemmmm parece que tu gatito es demasiado gordo jiji, por favor subí uno que pese menos de 2mb :-)",
+					"._. ummmmm it seems your kitty might be a bit too fat :P, please upload one that is under 8mb",
 				isError: true,
 			});
 		} else {
@@ -93,7 +93,7 @@ function verifyImage(req, res, next) {
 	} else {
 		res.json({
 			message:
-				"OwO tuvimos un problemita >.< tu gatito tiene que venir en formato jpg, jpeg o png, perdon (；ω；)",
+				"OwO we had a small issue >.< your kitty most come in jpg, jpeg o png formats, sowwy (；ω；)",
 			isError: true,
 		});
 	}
@@ -124,7 +124,7 @@ function verifyCat(req, res, next) {
 					if (!isCat) {
 						res.json({
 							message:
-								"La página se llama Pretty Kitty Twitty, no Pretty Lo Que Se Te Cante El Culo Twitty. Por favor subí fotos de gatitos o andate.",
+								"The page is called Pretty Kitty Twitty, not Pretty Whatever The Fuck You Want Twitty, please upload cat pictures or leave.",
 							isError: true,
 						});
 					} else {
@@ -133,7 +133,7 @@ function verifyCat(req, res, next) {
 				} else {
 					res.json({
 						message:
-							"aaAaAA perdónnnNN, hubo un error al revisar la imagen, revisá que sea un archivo válido.",
+							"aaAaAA sowwyYYY, there was an issue when reviewing your picture, please check that it's a valid image file.",
 						isError: true,
 					});
 				}

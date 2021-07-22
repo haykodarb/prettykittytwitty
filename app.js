@@ -1,7 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
-const http = require("http").createServer(app);
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
@@ -18,6 +16,15 @@ const crypto = require("crypto");
 
 let port = process.env.SERVER_PORT;
 let webServer = process.env.WEB_SERVER;
+
+const app = express();
+const http = require("http").createServer(app);
+const webApp = express();
+
+webApp.listen(80);
+webApp.use(express.static(__dirname + "/public/web"));
+webApp.use('/dashboard', express.static(__dirname + "/public/web"));
+webApp.use('/login', express.static(__dirname + "/public/web"));
 
 //Server config
 http.listen(port, () => {
@@ -109,7 +116,6 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cookieParser());
-app.use(express.static(__dirname + "/public"));
 
 let store = new BetterMemoryStore({ expires: 60 * 60 * 1000, debug: true });
 
