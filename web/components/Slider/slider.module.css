@@ -1,0 +1,24 @@
+.container {
+	height: 250px;
+	padding: 10px;
+	min-width: 80%;
+	max-width: 80%;
+	display: flex;
+	flex-grow: 1;
+	border: 2px solid #f28482;
+	flex-direction: row;
+	justify-content: flex-start;
+	margin: 0.2%;
+	overflow: auto;
+	align-items: center;
+	float: left;
+	left: 500px;
+}
+
+.image {
+	max-height: 100%;
+	min-height: 100%;
+	margin-right: 10px;
+	position: relative;
+	cursor: grab;
+}

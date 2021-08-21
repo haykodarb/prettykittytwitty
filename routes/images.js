@@ -15,7 +15,6 @@ const UserSchema = mongoose.Schema({
 	username: String,
 	token: String,
 	tokenSecret: String,
-	backendToken: String,
 });
 
 const User = con.model("User", UserSchema, "users");
@@ -29,23 +28,7 @@ const router = express.Router();
 router.use(express.json());
 router.use(express.urlencoded());
 
-function verifyUser(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-
-	User.findOne({ username: req.query.username }, (err, result) => {
-		if (result) {
-			if (result.backendToken == req.query.token) {
-				next();
-			} else {
-				res.status(400).send("Token incorrecto");
-			}
-		} else {
-			res.status(400).send("Token incorrecto");
-		}
-	});
-}
-
-router.get("/", verifyUser, (req, res) => {
+router.get("/", (req, res) => {
 	let isUploaded = req.query.uploaded == "true";
 	let data = new Array();
 	gfs.files

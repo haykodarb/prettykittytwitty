@@ -1,0 +1,21 @@
+/* 
+Color pallete: https://coolors.co/f6bd60-f7ede2-f5cac3-84a59d-f28482
+*/
+
+html,
+body {
+	background-color: #f7ede2;
+	padding: 0;
+	padding-bottom: 30px;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	line-height: 1.4;
+	font-size: 20px;
+	align-items: center;
+	justify-content: center;
+}
+
+* {
+	box-sizing: border-box;
+}

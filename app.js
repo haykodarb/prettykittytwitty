@@ -1,11 +1,13 @@
 require("dotenv").config();
 const express = require("express");
+const next = require("next");
+
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const TwitterStrategy = require("passport-twitter").Strategy;
 const session = require("express-session");
-const BetterMemoryStore = require("session-memory-store")(session);
+const MongoStore = require("connect-mongo");
 const grid = require("gridfs-stream");
 const mongoose = require("mongoose");
 const upload = require("./routes/upload");
@@ -15,21 +17,10 @@ const { encrypt } = require("./utils/crypto");
 const crypto = require("crypto");
 
 let port = process.env.SERVER_PORT;
-let webServer = process.env.WEB_SERVER;
 
-const app = express();
-const http = require("http").createServer(app);
-const webApp = express();
-
-webApp.listen(80);
-webApp.use(express.static(__dirname + "/public/web"));
-webApp.use('/dashboard', express.static(__dirname + "/public/web"));
-webApp.use('/login', express.static(__dirname + "/public/web"));
-
-//Server config
-http.listen(port, () => {
-	console.log(`Listening on port: ${port}`);
-});
+const dev = process.env.NODE_ENV !== "production";
+const app = next({ dev, dir: "./web" });
+const handle = app.getRequestHandler();
 
 let con = mongoose.createConnection(process.env.MONGO_URL, {
 	useNewUrlParser: true,
@@ -109,49 +100,73 @@ passport.deserializeUser(function (object, callback) {
 	callback(null, object);
 });
 
-// view engine setup
-app.set("views", path.join("./public/views"));
-app.set("view engine", "ejs");
+app.prepare().then(() => {
+	const server = express();
 
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(cookieParser());
+	server.use(express.json());
+	server.use(express.urlencoded());
+	server.use(cookieParser());
 
-let store = new BetterMemoryStore({ expires: 60 * 60 * 1000, debug: true });
+	const store = MongoStore.create({
+		mongoUrl: process.env.MONGO_URL,
+	});
 
-app.use(
-	session({
-		name: "session",
-		secret: process.env.SESSION_SECRET,
-		store: store,
-		resave: false,
-		saveUninitialized: true,
-	})
-);
-app.use(passport.initialize());
-app.use(passport.session());
-app.use("/api/upload", upload);
-app.use("/api/images", images);
+	server.use(
+		session({
+			name: "session",
+			secret: process.env.SESSION_SECRET,
+			store: store,
+			resave: true,
+			cookie: { maxAge: 600000, secure: false, sameSite: "none" },
+		})
+	);
 
-app.get("/twitter", passport.authenticate("twitter"));
+	server.use(passport.initialize());
+	server.use(passport.session());
+	server.use("/api/upload", upload);
+	server.use("/api/images", images);
 
-app.get(
-	"/callback",
-	passport.authenticate("twitter", {
-		failureRedirect: `${webServer}/login`,
-	}),
-	async (req, res) => {
-		await User.findOne({ username: req.user.username }, (err, result) => {
-			if (result) {
-				res.redirect(
-					`${webServer}/dashboard?username=${req.user.username}&token=${result.backendToken}`
-				);
-			}
-		});
-	}
-);
+	server.get("/twitter", passport.authenticate("twitter"));
 
-// hasta arreglar encrypt/decrypt
+	server.get(
+		"/callback",
+		passport.authenticate("twitter", {
+			failureRedirect: `/login`,
+		}),
+		async (req, res) => {
+			await User.findOne({ username: req.user.username }, (err, result) => {
+				res.redirect("/");
+				console.log(result);
+			});
+		}
+	);
+
+	server.get("/", (req, res) => {
+		if (req.user) {
+			app.render(req, res, "/");
+		} else {
+			res.redirect("/login");
+		}
+	});
+
+	server.get("/login", (req, res) => {
+		if (!req.user) {
+			app.render(req, res, "/login");
+		} else {
+			res.redirect("/");
+		}
+	});
+
+	server.get("*", (req, res) => {
+		return handle(req, res);
+	});
+
+	server.listen(3030, (err) => {
+		if (err) throw err;
+		console.log("Server ready");
+	});
+});
+
 cronJob.start();
 
 module.exports = app;

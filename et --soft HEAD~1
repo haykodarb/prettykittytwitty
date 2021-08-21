@@ -1,0 +1,271 @@
+[33mcommit 5de345c66ba72c147f08e5549a777e826cc9dbdd[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sat Aug 21 10:40:44 2021 -0300
+
+    Building web app in Next JS
+
+[33mcommit b631a73ca6777bd2b243a4d0c2e4f16ef198d422[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Thu Jul 22 19:16:48 2021 -0300
+
+    Changed title
+
+[33mcommit 09e07a38f04edcb84f02f5236ae1e0ab46766944[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Thu Jul 22 19:12:35 2021 -0300
+
+    dsad
+
+[33mcommit 14d2de7ce3b92574f705ed7f55da21f82747bbab[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Thu Jul 22 19:07:03 2021 -0300
+
+    Updating with correct url
+
+[33mcommit 147a8ec37075e8d2fd8a31fbff63e56264c0ee9c[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Thu Jul 22 17:21:37 2021 -0300
+
+    Updated flutter static files
+
+[33mcommit a28f2dca0eb17264f018de37f39746dba5aa5972[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Thu Jul 22 17:08:19 2021 -0300
+
+    Adding flutter web static files
+
+[33mcommit 3e446c98dea3f32ba7078ca98240ce98df2e65e6[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Thu Jul 22 16:48:40 2021 -0300
+
+    Committings
+
+[33mcommit 17c50f845b2846bf9fa14c426e8909d74a4378a4[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Wed Jul 21 16:30:05 2021 -0300
+
+    Latest changes
+
+[33mcommit 575d0c595b354ad706a1afc382cdffe364298e39[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Wed Jul 21 16:29:58 2021 -0300
+
+    Lastest version
+
+[33mcommit 1624e82d7bc91df00340cf146f7cf42ba97e47be[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Fri Jul 9 10:30:09 2021 -0300
+
+    removing .env file
+
+[33mcommit 14eb369509f87a4382d1af09de5318375be16ad5[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Fri Jul 9 10:15:54 2021 -0300
+
+    Modifying project for VPS usage
+
+[33mcommit f736c28bf2bb0e22ca949546adecaa0079874bb1[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sat May 22 17:25:12 2021 -0300
+
+    Changed bodyparser to express middleware
+
+[33mcommit 57d3b8543c919e348ca5c95fece563539cccac38[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sat May 22 17:11:40 2021 -0300
+
+    Resetting pingJob
+
+[33mcommit cf0bc970f661f20f69b5f69925b95ae753dafba1[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Oct 26 14:47:17 2020 -0300
+
+    Commiteando
+
+[33mcommit 5ddfb9a95bb75ad01826b018e22ceb1d366d7ebf[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Tue Oct 13 16:11:24 2020 -0300
+
+    Put ping job back in, took out node_modules folder
+
+[33mcommit 6599e80f8af85d7413843ffb6d5b31138b0b99a7[m
+Merge: 7d14738 e00f64a
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Tue Oct 13 16:07:19 2020 -0300
+
+    Merge branch 'master' of https://github.com/haykodarb/node_prettykittytwitty
+
+[33mcommit 7d14738fe2cc081ecf32d58aac3630b9647b4bae[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Tue Oct 13 16:06:57 2020 -0300
+
+    remove gitignore files
+
+[33mcommit e00f64a90d992f616ed5958ddfdae2b54cc4bca9[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Tue Sep 22 17:46:07 2020 -0300
+
+    Fixed ping job :)
+
+[33mcommit 93356ccfdc2f27a2cee53c3219622bdf83176f6e[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Tue Sep 22 17:44:27 2020 -0300
+
+    Took out the ping thingy
+
+[33mcommit 7aa511822ab26964435a3ef152270614381d6e30[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Thu Sep 10 16:52:53 2020 -0300
+
+    took out cron job to keep the app alive
+
+[33mcommit a573e53778f7ca14527c29a4ffbff0b98be95fac[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 21:30:21 2020 -0300
+
+    imagesLoaded property in flickity to solve loading issue
+
+[33mcommit 2c932496d1fd4feb6273bbd143eba7d83e509d04[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 21:20:10 2020 -0300
+
+    Changed back
+
+[33mcommit 318568e5a391d693551b8eb9a947a42b775142f0[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 21:07:52 2020 -0300
+
+    Testing order of appending elements
+
+[33mcommit 932b5834503bf2836dfd6ce03708c6e245b5cc2d[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 20:57:34 2020 -0300
+
+    Trying to fix sliders so that they show up properly
+
+[33mcommit 22ae4ab7a5150d75fded76a818ef79e73709dc26[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 16:32:24 2020 -0300
+
+    Changed a bit more stuff on the front
+
+[33mcommit 17e664779adb81c02c025bac2195ef87657b0d56[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 16:29:42 2020 -0300
+
+    Fixed it! should work fine now.
+
+[33mcommit 515fa2a617a1cda069d975291a6ff75db2caed02[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 16:23:49 2020 -0300
+
+    I think I found the error
+
+[33mcommit 180bdd22d658ed4d1b7f7ffe2096efce6df0ccbf[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 16:21:41 2020 -0300
+
+    Trying..
+
+[33mcommit e3fee72c6d85478126ca27b842875cebaa7138f2[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 16:11:53 2020 -0300
+
+    Trying...
+
+[33mcommit 0d5358a40783584f4fdcb23f511e0727107bee45[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 16:07:21 2020 -0300
+
+    Trying something...
+
+[33mcommit a922e72c33c54a094155674997f01cdc76262de5[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 16:01:27 2020 -0300
+
+    Trying stuff out to fix this
+
+[33mcommit e8747a170be054145f6707d2c6f799bdcdb011cc[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 15:59:31 2020 -0300
+
+    Missed a parameter when rendering
+
+[33mcommit fa42450d158179ba95193ab529f1381cb38b2b61[m
+Merge: 04c9fba 8ffdd51
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 15:56:42 2020 -0300
+
+    Merge branch 'master' of https://github.com/haykodarb/node_prettykittytwitty
+
+[33mcommit 04c9fba4dddb8f1705ad4de97e821e37b0ec0933[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Mon Aug 10 15:55:48 2020 -0300
+
+    Changed the way images are uploaded, and the error message is displayed
+
+[33mcommit 8ffdd513d6b6791854f1fe94a21cb6bfbbbc168b[m
+Author: Hayk Darbinyan <63375554+haykodarb@users.noreply.github.com>
+Date:   Sun Aug 9 22:13:39 2020 -0300
+
+    Add files via upload
+
+[33mcommit ecf1b01e1e1acfb5675576ec1d02ec4591b19701[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 21:22:28 2020 -0300
+
+    Changed order in which images appear (i think)
+
+[33mcommit 5a53e43ef4ba11dbef6ed56731cb224491b32605[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:59:09 2020 -0300
+
+    Trying differentyl..
+
+[33mcommit c0a4c8faa623a268c086fecd2cfd6581d9d479ca[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:53:07 2020 -0300
+
+    Changing logic
+
+[33mcommit fdd2eda46a45a921b9b64d66f40ed5145752e051[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:51:10 2020 -0300
+
+    Trying with textContent instead of innerHTML
+
+[33mcommit b118cac5eb8cef364c83fa844a03373641d4e4a1[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:49:13 2020 -0300
+
+    Trying...
+
+[33mcommit f169d08c4f3c5992499dfb599521115092245cfd[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:43:00 2020 -0300
+
+    I'm a dumbass
+
+[33mcommit 1f7a73016191d8dae321095c5ed8c8279bfe3dd7[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:41:49 2020 -0300
+
+    Trying stuff out
+
+[33mcommit 8fd2a7ce3020287aa96eaf34be2e300abde233f7[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:39:55 2020 -0300
+
+    More changes..
+
+[33mcommit f59838f5cedfda3c141cc0a2794bcb5854e931c2[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:36:25 2020 -0300
+
+    Minor changes
+
+[33mcommit 0961605e6a7156b2df56e096c2a494c1d8c74ab4[m
+Author: haykodarb <haykodarb@gmail.com>
+Date:   Sun Aug 9 19:33:35 2020 -0300
+
+    Changed front requests again
