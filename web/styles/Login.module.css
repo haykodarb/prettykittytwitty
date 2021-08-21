@@ -1,18 +1,23 @@
 .container {
-	flex-grow: 1;
+	margin-top: 1rem;
 	display: flex;
+	flex-grow: 1;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #1d3557;
+	min-height: 100%;
 }
 
 .title {
 	background-color: #f28482;
 	font-size: 45px;
-	margin-top: 50px;
 	text-align: center;
 	min-width: 50%;
+	max-width: 70%;
+	max-height: 10%;
 	padding: 20px 150px 20px 150px;
 	color: #fff;
-	display: flex;
 	cursor: default;
 	user-select: none;
 }

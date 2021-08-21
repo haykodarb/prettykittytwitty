@@ -18,7 +18,13 @@ export default function SliderShow({ uploaded }) {
 
 	return (
 		<>
-			<h1>{getTitle()}</h1>
+			<h1
+				style={{
+					marginTop: "4%",
+				}}
+			>
+				{getTitle()}
+			</h1>
 			<div className={styles.container} draggable="false">
 				{images != null
 					? images.map((el) => {

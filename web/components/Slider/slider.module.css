@@ -9,10 +9,18 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	margin: 0.2%;
-	overflow: auto;
+	overflow-x: scroll;
 	align-items: center;
 	float: left;
 	left: 500px;
+	scrollbar-width: "10px";
+	scrollbar-color: "#0000FF";
+}
+
+.container::-webkit-scrollbar {
+	width: 20;
+	height: 20;
+	color: brown;
 }
 
 .image {
@@ -20,5 +28,6 @@
 	min-height: 100%;
 	margin-right: 10px;
 	position: relative;
-	cursor: grab;
+	cursor: default;
+	user-select: none;
 }
