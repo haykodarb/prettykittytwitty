@@ -21,7 +21,7 @@ const UserSchema = mongoose.Schema({
 	username: String,
 	token: String,
 	tokenSecret: String,
-	backendToken: String,
+	firstPic: Boolean,
 });
 
 const User = con.model("User", UserSchema, "users");
@@ -40,8 +40,7 @@ let tempUpload = multer({ storage: multer.memoryStorage() });
 
 router.post(
 	"/",
-	tempUpload.single("file"),
-	verifyUser,
+	tempUpload.single("myImage"),
 	verifyImage,
 	verifyCat,
 	upload,
@@ -54,26 +53,6 @@ router.post(
 	}
 );
 
-function verifyUser(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-
-	console.log(req.body);
-	console.log(req.file);
-
-	User.findOne({ username: req.body.username }, (err, result) => {
-		if (result) {
-			console.log(result);
-			if (result.backendToken == req.body.token) {
-				next();
-			} else {
-				res.status(400).send("Token incorrecto");
-			}
-		} else {
-			res.status(400).send("Token incorrecto");
-		}
-	});
-}
-
 function verifyImage(req, res, next) {
 	let fileType = req.file.mimetype;
 	if (
@@ -81,7 +60,7 @@ function verifyImage(req, res, next) {
 		fileType === "image/jpeg" ||
 		fileType === "image/png"
 	) {
-		if (req.file.size > (2097152 * 4)) {
+		if (req.file.size > 2097152 * 4) {
 			res.json({
 				message:
 					"._. ummmmm it seems your kitty might be a bit too fat :P, please upload one that is under 8mb",
@@ -153,7 +132,7 @@ function upload(req, res, next) {
 			root: "uploads",
 			content_type: req.file.mimetype,
 			metadata: {
-				username: req.body.username,
+				username: req.user.username,
 				inTwitter: false,
 				originalName: req.file.originalname,
 			},

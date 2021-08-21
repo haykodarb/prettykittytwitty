@@ -19,9 +19,9 @@ con.once("open", () => {
 const UserSchema = mongoose.Schema({
 	userid: String,
 	username: String,
-	firstPic: Boolean,
 	token: String,
 	tokenSecret: String,
+	firstPic: Boolean,
 });
 
 const User = con.model("User", UserSchema, "users");

@@ -161,7 +161,7 @@ app.prepare().then(() => {
 		return handle(req, res);
 	});
 
-	server.listen(3030, (err) => {
+	server.listen(process.env.SERVER_PORT, (err) => {
 		if (err) throw err;
 		console.log("Server ready");
 	});
