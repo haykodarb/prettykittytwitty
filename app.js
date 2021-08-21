@@ -19,7 +19,7 @@ const crypto = require("crypto");
 let port = process.env.SERVER_PORT;
 
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev, dir: "./web" });
+const app = next({ dev: dev, dir: "./web" });
 const handle = app.getRequestHandler();
 
 let con = mongoose.createConnection(process.env.MONGO_URL, {
