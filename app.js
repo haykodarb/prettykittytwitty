@@ -122,7 +122,9 @@ app.prepare().then(() => {
 	server.use("/api/upload", upload);
 	server.use("/api/images", images);
 
-	server.get("/twitter", passport.authenticate("twitter"));
+	server.get("/twitter", passport.authenticate("twitter"), (req, res) => {
+		res.redirect("/");
+	});
 
 	server.get(
 		"/callback",
