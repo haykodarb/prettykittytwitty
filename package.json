@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "node app.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node app.js"
+    "build": "next build ./web",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
