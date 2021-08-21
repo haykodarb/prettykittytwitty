@@ -1,8 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const next = require("next");
-
-const path = require("path");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const TwitterStrategy = require("passport-twitter").Strategy;
@@ -15,8 +13,6 @@ const images = require("./routes/images");
 const cronJob = require("./utils/cron");
 const { encrypt } = require("./utils/crypto");
 const crypto = require("crypto");
-
-let port = process.env.SERVER_PORT;
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev: dev, dir: "./web" });

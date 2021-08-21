@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node app.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node app.js"
   },
   "author": "",
   "license": "ISC",
