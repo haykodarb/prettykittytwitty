@@ -132,13 +132,8 @@ app.prepare().then(() => {
 		"/callback",
 		passport.authenticate("twitter", {
 			failureRedirect: `/login`,
-		}),
-		async (req, res) => {
-			await User.findOne({ username: req.user.username }, (err, result) => {
-				res.redirect("/");
-				console.log(result);
-			});
-		}
+			successRedirect: "/",
+		})
 	);
 
 	server.get("/", (req, res) => {
