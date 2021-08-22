@@ -30,7 +30,7 @@ const UserSchema = mongoose.Schema({
 	username: String,
 	token: String,
 	tokenSecret: String,
-	backendToken: String,
+	firstPic: Boolean,
 });
 
 const User = con.model("User", UserSchema, "users");
@@ -56,14 +56,12 @@ passport.use(
 					}
 					let encryptedToken = encrypt(token);
 					let encryptedSecret = encrypt(tokenSecret);
-					let backendToken = crypto.randomBytes(10).toString("hex");
 					if (result) {
 						await User.updateOne(
 							{ username: profile.username },
 							{
 								token: encryptedToken,
 								tokenSecret: encryptedSecret,
-								backendToken: backendToken,
 							},
 							(err) => {
 								if (err) {
@@ -78,7 +76,6 @@ passport.use(
 							username: profile.username,
 							token: encryptedToken,
 							tokenSecret: encryptedSecret,
-							backendToken: backendToken,
 						});
 						await user.save();
 					}
@@ -99,6 +96,7 @@ passport.deserializeUser(function (object, callback) {
 app.prepare().then(() => {
 	const server = express();
 
+	server.enable("trust proxy");
 	server.use(express.json());
 	server.use(express.urlencoded());
 	server.use(cookieParser());
@@ -113,7 +111,11 @@ app.prepare().then(() => {
 			secret: process.env.SESSION_SECRET,
 			store: store,
 			resave: true,
-			cookie: { maxAge: 600000, secure: false, sameSite: "none" },
+			cookie: {
+				maxAge: 600000,
+				secure: true,
+				sameSite: "strict",
+			},
 		})
 	);
 
@@ -122,16 +124,16 @@ app.prepare().then(() => {
 	server.use("/api/upload", upload);
 	server.use("/api/images", images);
 
-	server.get("/twitter", passport.authenticate("twitter"), (req, res) => {
-		res.redirect("/");
-	});
+	server.get("/twitter", passport.authenticate("twitter"));
 
 	server.get(
 		"/callback",
 		passport.authenticate("twitter", {
 			failureRedirect: `/login`,
-			successRedirect: "/",
-		})
+		}),
+		function (req, res) {
+			res.redirect("/");
+		}
 	);
 
 	server.get("/", (req, res) => {
