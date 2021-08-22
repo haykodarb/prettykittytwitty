@@ -13,14 +13,23 @@
 	align-items: center;
 	float: left;
 	left: 500px;
-	scrollbar-width: "10px";
-	scrollbar-color: "#0000FF";
+	scrollbar-color: #f28482 transparent !important;
+	scrollbar-width: auto !important;
+}
+.container::-webkit-scrollbar {
+	width: 50px;
 }
 
-.container::-webkit-scrollbar {
-	width: 20;
-	height: 20;
-	color: brown;
+.container::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 2px #f28482;
+	box-shadow: inset 0 0 2px #f28482;
+}
+
+.container::-webkit-scrollbar-thumb {
+	background-color: #f28482;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 2px #f28482;
+	box-shadow: inset 0 0 2px #f28482;
 }
 
 .image {

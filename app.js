@@ -96,7 +96,6 @@ passport.deserializeUser(function (object, callback) {
 app.prepare().then(() => {
 	const server = express();
 
-	server.enable("trust proxy");
 	server.use(express.json());
 	server.use(express.urlencoded());
 	server.use(cookieParser());
@@ -110,12 +109,6 @@ app.prepare().then(() => {
 			name: "session",
 			secret: process.env.SESSION_SECRET,
 			store: store,
-			resave: true,
-			cookie: {
-				maxAge: 600000,
-				secure: true,
-				sameSite: "strict",
-			},
 		})
 	);
 
